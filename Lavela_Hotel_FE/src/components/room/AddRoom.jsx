@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { addRoom } from "../utils/ApiFunctions";
 import RoomTypeSelector from "../common/RoomTypeSelector";
+import { Link } from "react-router-dom";
 
 const AddRoom = () => {
   const [newRoom, setNewRoom] = useState({
@@ -96,10 +98,10 @@ const AddRoom = () => {
             <h2 className="mt-5 mb-2">Add a new room</h2>
             <div>
               {successMessage && (
-                <div className="alert alert-success">{successMessage}</div>
+                <div className="alert alert-success fade show">{successMessage}</div>
               )}
               {errorMessage && (
-                <div className="alert alert-danger">{errorMessage}</div>
+                <div className="alert alert-danger fade show">{errorMessage}</div>
               )}
             </div>
             <form onSubmit={handleSubmit}>
@@ -148,17 +150,15 @@ const AddRoom = () => {
                     src={imagePreview}
                     alt="Preview Room Photo"
                     style={{ maxWidth: "400px", maxHeight: "400px" }}
-                    className="mb-3"
-                  />
+                    className="mb-3"></img>
                 )}
               </div>
-
-              <div className="d-grid d-md-flex mt-2">
-                <button
-                  className="btn btn-outline-primary ml-5"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Saving..." : "Save Room"}
+              <div className="d-grid gap-2 d-md-flex mt-2">
+                <Link to={"/existing-rooms"} className="btn btn-outline-info">
+                  Black
+                </Link>
+                <button type="submit" className="btn btn-outline-primary ml-5">
+                  Save Room
                 </button>
               </div>
             </form>
