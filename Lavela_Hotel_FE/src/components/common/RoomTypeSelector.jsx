@@ -1,43 +1,42 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { getRoomTypes } from '../utils/ApiFunctions'
 
 const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
-  const [roomTypes, setRoomTypes] = useState([""]);
-  const [showNewRoomTypeInput, setShowNewRoomTypesInput] = useState(false);
-  const [newRoomType, setNewRoomType] = useState("");
+  const [roomTypes, setRoomTypes] = useState([""])
+  const [showNewRoomTypeInput, setShowNewRoomTypesInput] = useState(false)
+  const [newRoomType, setNewRoomType] = useState("")
 
   useEffect(() => {
     // Lấy room types từ localStorage trước
-    const savedRoomTypes = JSON.parse(localStorage.getItem("roomTypes"));
+    const savedRoomTypes = JSON.parse(localStorage.getItem("roomTypes"))
     if (savedRoomTypes) {
-      setRoomTypes(savedRoomTypes);
+      setRoomTypes(savedRoomTypes)
     } else {
       // Nếu chưa có trong localStorage, gọi API để lấy room types
       getRoomTypes().then((data) => {
-        setRoomTypes(data);
+        setRoomTypes(data)
         // Lưu dữ liệu từ API vào localStorage
-        localStorage.setItem("roomTypes", JSON.stringify(data));
-      });
+        localStorage.setItem("roomTypes", JSON.stringify(data))
+      })
     }
-  }, []);
+  }, [])
 
   const handleNewRoomTypeInputChange = (e) => {
-    setNewRoomType(e.target.value);
-  };
+    setNewRoomType(e.target.value)
+  }
 
   const handleAddNewRoomType = () => {
     if (newRoomType !== "") {
-      const updatedRoomTypes = [...roomTypes, newRoomType];
-      setRoomTypes(updatedRoomTypes);
+      const updatedRoomTypes = [...roomTypes, newRoomType]
+      setRoomTypes(updatedRoomTypes)
       // Lưu room types cập nhật vào localStorage
-      localStorage.setItem("roomTypes", JSON.stringify(updatedRoomTypes));
-      setNewRoomType("");
-      setShowNewRoomTypesInput(false);
+      localStorage.setItem("roomTypes", JSON.stringify(updatedRoomTypes))
+      setNewRoomType("")
+      setShowNewRoomTypesInput(false)
     }
-  };
+  }
 
   return (
     <>
@@ -49,9 +48,9 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
             value={newRoom.roomType}
             onChange={(e) => {
               if (e.target.value === "Add New") {
-                setShowNewRoomTypesInput(true);
+                setShowNewRoomTypesInput(true)
               } else {
-                handleRoomInputChange(e);
+                handleRoomInputChange(e)
               }
             }}
           >
@@ -84,7 +83,7 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default RoomTypeSelector;
+export default RoomTypeSelector

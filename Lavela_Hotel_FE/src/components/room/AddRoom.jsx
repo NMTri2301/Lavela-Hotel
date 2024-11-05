@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
-import { addRoom } from "../utils/ApiFunctions";
-import RoomTypeSelector from "../common/RoomTypeSelector";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { addRoom } from "../utils/ApiFunctions"
+import RoomTypeSelector from "../common/RoomTypeSelector"
+import { Link } from "react-router-dom"
 
 const AddRoom = () => {
   const [newRoom, setNewRoom] = useState({
@@ -11,84 +11,84 @@ const AddRoom = () => {
     roomPrice: "",
   });
 
-  const [imagePreview, setImagePreview] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [roomTypes, setRoomTypes] = useState([]);
+  const [imagePreview, setImagePreview] = useState("")
+  const [successMessage, setSuccessMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [roomTypes, setRoomTypes] = useState([])
 
   useEffect(() => {
     // Load room types from localStorage on component mount
-    const savedRoomTypes = JSON.parse(localStorage.getItem("roomTypes")) || [];
-    setRoomTypes(savedRoomTypes);
-  }, []);
+    const savedRoomTypes = JSON.parse(localStorage.getItem("roomTypes")) || []
+    setRoomTypes(savedRoomTypes)
+  }, [])
 
   const handleRoomInputChange = (e) => {
-    const name = e.target.name;
-    let value = e.target.value;
+    const name = e.target.name
+    let value = e.target.value
     if (name === "roomPrice") {
       if (!isNaN(value)) {
-        value = parseInt(value, 10); // parseInt thành công và lưu lại số nguyên
+        value = parseInt(value, 10)
       } else {
-        value = "";
+        value = ""
       }
     }
-    setNewRoom({ ...newRoom, [name]: value });
-  };
+    setNewRoom({ ...newRoom, [name]: value })
+  }
 
   const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    setNewRoom({ ...newRoom, photo: selectedImage });
-    setImagePreview(URL.createObjectURL(selectedImage));
-  };
+    const selectedImage = e.target.files[0]
+    setNewRoom({ ...newRoom, photo: selectedImage })
+    setImagePreview(URL.createObjectURL(selectedImage))
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+    e.preventDefault()
+    setIsSubmitting(true)
 
     try {
       if (!newRoom.roomType.trim()) {
-        setErrorMessage("Please select a room type.");
-        return;
+        setErrorMessage("Please select a room type.")
+        return
       }
 
       if (isNaN(newRoom.roomPrice) || newRoom.roomPrice <= 0) {
-        setErrorMessage("Please enter a valid room price.");
-        return;
+        setErrorMessage("Please enter a valid room price.")
+        return
       }
 
       const success = await addRoom(
         newRoom.photo,
         newRoom.roomType,
         newRoom.roomPrice
-      );
+      )
 
       if (success !== undefined) {
-        setSuccessMessage("A new room was added to the database.");
+        setSuccessMessage("A new room was added to the database.")
 
         // Update the room types list and save it to localStorage
-        const updatedRoomTypes = [...roomTypes, newRoom.roomType];
-        setRoomTypes(updatedRoomTypes);
+        const updatedRoomTypes = [...roomTypes, newRoom.roomType]
+        setRoomTypes(updatedRoomTypes)
         localStorage.setItem("roomTypes", JSON.stringify(updatedRoomTypes));
 
         // Reset form fields
-        setNewRoom({ photo: null, roomType: "", roomPrice: "" });
-        setImagePreview("");
-        setErrorMessage("");
+        setNewRoom({ photo: null, roomType: "", roomPrice: "" })
+        setImagePreview("")
+        setErrorMessage("")
       } else {
-        setErrorMessage("Error adding room.");
+        setErrorMessage("Error adding room.")
       }
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.message)
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
 
     setTimeout(() => {
-      setSuccessMessage("");
-      setErrorMessage("");
-    }, 3000);
-  };
+      setSuccessMessage("")
+      setErrorMessage("")
+    }, 3000)
+  }
 
   return (
     <>
@@ -166,7 +166,7 @@ const AddRoom = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default AddRoom;
+export default AddRoom

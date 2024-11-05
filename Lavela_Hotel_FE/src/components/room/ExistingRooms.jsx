@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react"
 import { deleteRoom, getAllRooms } from "../utils/ApiFunctions"
@@ -10,72 +8,72 @@ import { FaEdit, FaEye, FaPlus, FaTrashAlt } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
 const ExistingRooms = () => {
-    const [rooms, setRooms] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [roomsPerPage] = useState(10);
+    const [rooms, setRooms] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const [roomsPerPage] = useState(8)
     const [isLoading, setIsLoading] = useState(false);
-    const [filteredRooms, setFilteredRooms] = useState([]);
-    const [selectedRoomType, setSelectedRoomType] = useState("");
-    const [successMessage, setSuccessMessage] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
+    const [filteredRooms, setFilteredRooms] = useState([])
+    const [selectedRoomType, setSelectedRoomType] = useState("")
+    const [successMessage, setSuccessMessage] = useState("")
+    const [errorMessage, setErrorMessage] = useState("")
 
     useEffect(() => {
-        fetchRooms();
-    }, []);
+        fetchRooms()
+    }, [])
 
     const fetchRooms = async () => {
         setIsLoading(true);
         try {
-            const result = await getAllRooms();
-            console.log("Fetched rooms:", result); // Log dữ liệu trả về
-            setRooms(result);
-            setFilteredRooms(result);
+            const result = await getAllRooms()
+            console.log("Fetched rooms:", result)
+            setRooms(result)
+            setFilteredRooms(result)
         } catch (error) {
-            console.error("Error fetching rooms:", error);
-            setErrorMessage("Failed to load rooms. Please try again.");
+            console.error("Error fetching rooms:", error)
+            setErrorMessage("Failed to load rooms. Please try again.")
         } finally {
-            setIsLoading(false);
+            setIsLoading(false)
         }
-    };
+    }
 
     useEffect(() => {
         if (selectedRoomType === "") {
-            setFilteredRooms(rooms);
+            setFilteredRooms(rooms)
         } else {
-            const filtered = rooms.filter((room) => room.roomType === selectedRoomType);
-            setFilteredRooms(filtered);
+            const filtered = rooms.filter((room) => room.roomType === selectedRoomType)
+            setFilteredRooms(filtered)
         }
-        setCurrentPage(1);
-    }, [rooms, selectedRoomType]);
+        setCurrentPage(1)
+    }, [rooms, selectedRoomType])
 
     const handlePaginationClick = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
+        setCurrentPage(pageNumber)
+    }
 
     const handleDelete = async (roomId) => {
-        console.log(`Attempting to delete room with ID: ${roomId}`);
+        console.log(`Attempting to delete room with ID: ${roomId}`)
         try {
-            await deleteRoom(String(roomId));
-            setSuccessMessage(`Room No ${roomId} was deleted`);
-            setFilteredRooms(filteredRooms.filter((room) => room.id !== roomId));
+            await deleteRoom(String(roomId))
+            setSuccessMessage(`Room No ${roomId} was deleted`)
+            setFilteredRooms(filteredRooms.filter((room) => room.id !== roomId))
         } catch (error) {
-            setErrorMessage(`Error deleting room: ${error.message}`);
+            setErrorMessage(`Error deleting room: ${error.message}`)
         } finally {
             setTimeout(() => {
-                setSuccessMessage("");
-                setErrorMessage("");
-            }, 3000);
+                setSuccessMessage("")
+                setErrorMessage("")
+            }, 3000)
         }
-    };
+    }
 
     const calculateTotalPages = () => {
-        const totalRooms = filteredRooms.length > 0 ? filteredRooms.length : rooms.length;
-        return Math.ceil(totalRooms / roomsPerPage);
+        const totalRooms = filteredRooms.length > 0 ? filteredRooms.length : rooms.length
+        return Math.ceil(totalRooms / roomsPerPage)
     };
 
-    const indexOfLastRoom = currentPage * roomsPerPage;
-    const indexOfFirstRoom = indexOfLastRoom - roomsPerPage;
-    const currentRooms = filteredRooms.slice(indexOfFirstRoom, indexOfLastRoom);
+    const indexOfLastRoom = currentPage * roomsPerPage
+    const indexOfFirstRoom = indexOfLastRoom - roomsPerPage
+    const currentRooms = filteredRooms.slice(indexOfFirstRoom, indexOfLastRoom)
 
     return (
         <>
@@ -144,7 +142,7 @@ const ExistingRooms = () => {
                 </>
             )}
         </>
-    );
-};
+    )
+}
 
-export default ExistingRooms;
+export default ExistingRooms

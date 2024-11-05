@@ -118,7 +118,7 @@ public class RoomController {
         );
     }
     private List<BookedRoom> getAllBookingsByRoomId(Long roomId) {
-        return bookingService.getAllBookingByRoomId(roomId);
+        return bookingService.getAllBookingsByRoomId(roomId);
 
     }
 }
