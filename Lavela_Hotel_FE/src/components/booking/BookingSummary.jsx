@@ -48,11 +48,11 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
             <div>
                 <h5>Number of Guests</h5>
                 <strong>
-                    Adult{booking.numberOfAdults > 1 ? "s" : ""} : {booking.numberOfAdults}
+                    Adult{booking.numOfAdults > 1 ? "s" : ""} : {booking.numOfAdults}
                 </strong>
                 <br/>
                 <strong>
-                    Children : {booking.numberOfChildren}
+                    Children : {booking.numOfChildren}
                 </strong>
             </div>
             {payment > 0 ? (
