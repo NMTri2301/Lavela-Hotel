@@ -1,6 +1,7 @@
 package com.bookinghotel.Lavela_Hotel.service;
 
 import com.bookinghotel.Lavela_Hotel.exception.InvalidBookingRequestException;
+import com.bookinghotel.Lavela_Hotel.exception.ResourceNotFoundException;
 import com.bookinghotel.Lavela_Hotel.model.BookedRoom;
 import com.bookinghotel.Lavela_Hotel.model.Room;
 import com.bookinghotel.Lavela_Hotel.repository.BookingRepository;
@@ -47,7 +48,7 @@ public class BookingService implements IBookingService {
 
     @Override
     public BookedRoom findByBookingConfirmationCode(String confirmationCode) {
-        return bookingRepository.findByBookingConfirmationCode(confirmationCode);
+        return bookingRepository.findByBookingConfirmationCode(confirmationCode).orElseThrow(()-> new ResourceNotFoundException("No booking found with booking code: "));
     }
     private boolean roomIsAvailable(BookedRoom bookingRequest, List<BookedRoom> existingBookings) {
         return existingBookings.stream()

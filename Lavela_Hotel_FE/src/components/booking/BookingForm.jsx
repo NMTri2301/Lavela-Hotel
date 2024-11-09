@@ -147,9 +147,7 @@ const BookingForm = () => {
                                                 Please select a check-in date
                                             </FormControl.Feedback>
                                         </div>
-                                    </div>
 
-                                    <div className="row">
                                         <div className="col-6">
                                             <Form.Label htmlFor="checkOutDate">Check-Out Date: </Form.Label>
                                             <FormControl
@@ -197,6 +195,7 @@ const BookingForm = () => {
                                                 name="numOfChildren"
                                                 value={booking.numOfChildren}
                                                 placeholder="0"
+                                                min={1}
                                                 onChange={handleInputChange}
                                             />
                                             <FormControl.Feedback type="invalid">
