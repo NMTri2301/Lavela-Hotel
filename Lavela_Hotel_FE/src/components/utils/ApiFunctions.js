@@ -1,6 +1,4 @@
 import axios from "axios";
-// import { ThemeProvider } from "react-bootstrap";
-
 export const api = axios.create({
     baseURL: "http://localhost:8080",
 });
@@ -79,16 +77,16 @@ export async function getRoomById(roomId) {
 }
 // This function saves a new booking to the database
 export async function bookRoom(roomId, booking) {
-    try {
-        const response = await api.post(`/bookings/room/${roomId}/booking`, booking)
-        return response.data
-    } catch (error) {
-        if (error.response && error.response.data) {
-            throw new Error(error.response.data)
-        } else {
-            throw new Error(`Error booking room : ${error.message}`)
-        }
-    }
+	try {
+		const response = await api.post(`/bookings/room/${roomId}/booking`, booking)
+		return response.data
+	} catch (error) {
+		if (error.response && error.response.data) {
+			throw new Error(error.response.data)
+		} else {
+			throw new Error(`Error booking room : ${error.message}`)
+		}
+	}
 }
 //This function get all bookings from the database
 export async function getAllBookings() {
@@ -118,4 +116,12 @@ export async function cancelBooking(bookingId) {
     } catch (error) {
         throw new Error(`Error cancelling booking :${error.message}`)
     }
+}
+// This function gets all availavle rooms from the database with a given date and a room type 
+export async function getAvailableRooms(checkInDate, checkOutDate, roomType) {
+	const result = await api.get(
+		`rooms/available-rooms?checkInDate=${checkInDate}
+		&checkOutDate=${checkOutDate}&roomType=${roomType}`
+	)
+	return result
 }

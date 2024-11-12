@@ -39,16 +39,16 @@ const RoomCarousel = () => {
                                 {rooms.slice(index * 4, index * 4 + 4).map((room) => (
                                     <Col key={room.id} className="mb-4" xs={12} md={6} lg={3}>
                                         <Card>
-                                        <Card.Body >
-                                            <Link to={`/book-room/${room.id}`}>
-                                                <Card.Img
-                                                    variant="top"
-                                                    src={`data:image/jpeg;base64,${room.photo}`}
-                                                    alt="Room Photo"
-                                                    className="w-100"
-                                                    style={{ height: "200px" }}
-                                                />
-                                            </Link>
+                                            <Card.Body >
+                                                <Link to={`/book-room/${room.id}`}>
+                                                    <Card.Img
+                                                        variant="top"
+                                                        src={`data:image/jpeg;base64,${room.photo}`}
+                                                        alt="Room Photo"
+                                                        className="w-100"
+                                                        style={{ height: "200px" }}
+                                                    />
+                                                </Link>
                                                 <Card.Title className="hotel-color">{room.roomType}</Card.Title>
                                                 <Card.Title className="room-price">${room.roomPrice}/night </Card.Title>
                                                 <div className="flex-shrink-0 mt-3">
