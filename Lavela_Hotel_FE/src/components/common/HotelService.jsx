@@ -35,7 +35,7 @@ const HotelService = () => {
 								<Card.Title className="hotel-color">
 									<FaWifi /> WiFi
 								</Card.Title>
-								<Card.Text>Stay connected with high-speed internet access.</Card.Text>
+								<Card.Text>Stay connected with high-speed internet access anytime, anywhere, seamlessly and securely.</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>
@@ -45,7 +45,7 @@ const HotelService = () => {
 								<Card.Title className="hotel-color">
 									<FaUtensils /> Breakfast
 								</Card.Title>
-								<Card.Text>Start your day with a delicious breakfast buffet.</Card.Text>
+								<Card.Text>Start your day with a delicious breakfast buffet full of variety and freshness.</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>
@@ -70,12 +70,12 @@ const HotelService = () => {
 						</Card>
 					</Col>
 					<Col>
-						<Card>
+						<Card className="">
 							<Card.Body>
 								<Card.Title className="hotel-color">
 									<FaParking /> Parking
 								</Card.Title>
-								<Card.Text>Park your car conveniently in our on-site parking lot.</Card.Text>
+								<Card.Text>Park your car conveniently in our secure, spacious, and well-lit on-site parking lot.</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>

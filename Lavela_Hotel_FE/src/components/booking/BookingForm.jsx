@@ -195,7 +195,7 @@ const BookingForm = () => {
                                                 name="numOfChildren"
                                                 value={booking.numOfChildren}
                                                 placeholder="0"
-                                                min={1}
+                                                min={0}
                                                 onChange={handleInputChange}
                                             />
                                             <FormControl.Feedback type="invalid">

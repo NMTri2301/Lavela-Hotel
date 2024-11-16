@@ -66,12 +66,12 @@ const AddRoom = () => {
       if (success !== undefined) {
         setSuccessMessage("A new room was added to the database.")
 
-        // Update the room types list and save it to localStorage
+        
         const updatedRoomTypes = [...roomTypes, newRoom.roomType]
         setRoomTypes(updatedRoomTypes)
         localStorage.setItem("roomTypes", JSON.stringify(updatedRoomTypes));
 
-        // Reset form fields
+        
         setNewRoom({ photo: null, roomType: "", roomPrice: "" })
         setImagePreview("")
         setErrorMessage("")
@@ -113,7 +113,7 @@ const AddRoom = () => {
                   <RoomTypeSelector
                     handleRoomInputChange={handleRoomInputChange}
                     newRoom={newRoom}
-                    roomTypes={roomTypes} // Pass down the roomTypes array
+                    roomTypes={roomTypes}
                   />
                 </div>
               </div>

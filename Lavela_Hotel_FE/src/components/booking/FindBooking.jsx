@@ -94,7 +94,7 @@ const FindBooking = () => {
 							placeholder="Enter the booking confirmation code"
 						/>
 
-						<button type="submit" className="btn btn-hotel input-group-text">
+						<button type="submit" className="btn btn-info input-group-text">
 							Find booking
 						</button>
 					</div>

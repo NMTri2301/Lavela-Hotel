@@ -82,7 +82,7 @@ body {
 
 
 .parallax {
-  background-image: url("./assets/images/bann.jpeg");
+  background-image: url("./assets/images/expedia_group-243079-260977784-465778.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -94,7 +94,7 @@ body {
   position: relative;
   height: 150px;
   background-size: cover;
-  background-image: url("./assets/images/images.jpg");
+  background-image: url("./assets/images/images.png");
   background-position: center center;
 }
 .header-title {
@@ -189,7 +189,7 @@ body {
 
 /* The header banner */
 .header-banner {
-  background-image:  url("./assets/images/bann.jpeg");
+  background-image:  url("./assets/images/lobby.jpg");
    background-size: cover;
   background-position: center;
    position: relative;
