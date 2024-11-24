@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext, useState } from "react"
+import React, { useState } from "react"
 import { NavLink, Link } from "react-router-dom"
 import Logout from "../auth/Logout"
-
+import { FaUser, FaSignOutAlt } from "react-icons/fa"  // Optional: icons for user and logout
 
 const NavBar = () => {
 	const [showAccount, setShowAccount] = useState(false)
@@ -15,10 +15,10 @@ const NavBar = () => {
 	const userRole = localStorage.getItem("userRole")
 
 	return (
-		<nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-5 sticky-top">
+		<nav className="navbar navbar-expand-lg navbar-dark bg-primary px-5 shadow-lg mt-5 sticky-top">
 			<div className="container-fluid">
-				<Link to={"/"} className="navbar-brand">
-					<span className="hotel-color">Lavela Hotel</span>
+				<Link to={"/"} className="navbar-brand text-white font-weight-bold">
+					<span className="hotel-color" style={{ fontSize: "1.75rem", fontFamily: "Cursive" }}>Lavela Hotel</span>
 				</Link>
 
 				<button
@@ -35,15 +35,15 @@ const NavBar = () => {
 				<div className="collapse navbar-collapse" id="navbarScroll">
 					<ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
 						<li className="nav-item">
-							<NavLink className="nav-link" aria-current="page" to={"/browse-all-rooms"}>
-								Browse all rooms
+							<NavLink className="nav-link text-light" aria-current="page" to={"/browse-all-rooms"}>
+								<span className="fw-bold">Browse all rooms</span>
 							</NavLink>
 						</li>
 
 						{isLoggedIn && userRole === "ROLE_ADMIN" && (
 							<li className="nav-item">
-								<NavLink className="nav-link" aria-current="page" to={"/admin"}>
-									Admin
+								<NavLink className="nav-link text-light" aria-current="page" to={"/admin"}>
+									<span className="fw-bold">Admin</span>
 								</NavLink>
 							</li>
 						)}
@@ -51,21 +51,20 @@ const NavBar = () => {
 
 					<ul className="d-flex navbar-nav">
 						<li className="nav-item">
-							<NavLink className="nav-link" to={"/find-booking"}>
-								Find my booking
+							<NavLink className="nav-link text-light" to={"/find-booking"}>
+								<span className="fw-bold">Find my booking</span>
 							</NavLink>
 						</li>
 
 						<li className="nav-item dropdown">
 							<a
-								className={`nav-link dropdown-toggle ${showAccount ? "show" : ""}`}
+								className={`nav-link dropdown-toggle text-light ${showAccount ? "show" : ""}`}
 								href="#"
 								role="button"
 								data-bs-toggle="dropdown"
 								aria-expanded="false"
 								onClick={handleAccountClick}>
-								{" "}
-								Account
+								<FaUser style={{ marginRight: "8px" }} />Account
 							</a>
 
 							<ul

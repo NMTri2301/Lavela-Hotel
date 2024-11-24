@@ -41,8 +41,8 @@ const EditRoom = () => {
     fetchRoom()
   }, [roomId])
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     try {
       const response = await updateRoom(roomId, room)
       if (response.status === 200) {
@@ -78,7 +78,7 @@ const EditRoom = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="roomType" className="form-label hotel-color">
-                Room Type
+                      Room Type
               </label>
               <input
                 type="text"
@@ -91,7 +91,7 @@ const EditRoom = () => {
             </div>
             <div className="mb-3">
               <label htmlFor="roomPrice" className="form-label hotel-color">
-                Room Price
+                      Room Price
               </label>
               <input
                 type="number"
@@ -104,14 +104,15 @@ const EditRoom = () => {
             </div>
             <div className="mb-3">
               <label htmlFor="photo" className="form-label hotel-color">
-                Photo
+                      Photo
               </label>
               <input
-                id="photo"
-                name="photo"
-                type="file"
-                className="form-control"
-                onChange={handleImageChange}
+                required
+								type="file"
+								className="form-control"
+								id="photo"
+								name="photo"
+								onChange={handleImageChange}
               />
               {imagePreview && (
                 <img
@@ -119,15 +120,15 @@ const EditRoom = () => {
                   alt="Room preview"
                   style={{ maxWidth: "400px", maxHeight: "400px" }}
                   className="mt-3"
-                ></img>
+                />
               )}
             </div>
-            <div className="d-grid gap-2 d-md-flex mt-2">
-              <Link to={'/existing-rooms'} className="btn btn-outline-info">
-                Back
+            <div className="d-grid gap-2 d-md-flex justify-content-center">
+              <Link to={'/existing-rooms'} className="btn btn-outline-info ml-5">
+                      Back
               </Link>
               <button type="submit" className="btn btn-outline-warning">
-                Edit Room
+                      Edit Room
               </button>
             </div>
           </form>

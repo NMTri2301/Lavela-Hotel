@@ -78,23 +78,23 @@ const Profile = () => {
     }
 
     return (
-        <div className="container">
+        <div className="container mt-5">
             {errorMessage && <p className="text-danger">{errorMessage}</p>}
-            {message && <p className="text-danger">{message}</p>}
+            {message && <p className="text-success">{message}</p>}
             {user ? (
-                <div className="card p-5 mt-5" style={{ backgroundColor: "whitesmoke" }}>
-                    <h4 className="card-title text-center">User Information</h4>
+                <div className="card p-5 mt-5 shadow-lg border-0 rounded-lg" style={{ backgroundColor: "#f8f9fa" }}>
+                    <h4 className="card-title text-center text-primary">User Information</h4>
                     <div className="card-body">
                         <div className="col-md-10 mx-auto">
-                            <div className="card mb-3 shadow">
+                            <div className="card mb-4 shadow-sm rounded">
                                 <div className="row g-0">
                                     <div className="col-md-2">
                                         <div className="d-flex justify-content-center align-items-center mb-4">
                                             <img
                                                 src="https://themindfulaimanifesto.org/wp-content/uploads/2020/09/male-placeholder-image.jpeg"
                                                 alt="Profile"
-                                                className="rounded-circle"
-                                                style={{ width: "150px", height: "150px", objectFit: "cover" }}
+                                                className="rounded-circle border border-3 border-info"
+                                                style={{ width: "150px", height: "150px", objectFit: "cover", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}
                                             />
                                         </div>
                                     </div>
@@ -102,45 +102,43 @@ const Profile = () => {
                                     <div className="col-md-10">
                                         <div className="card-body">
                                             <div className="form-group row">
-                                                <label className="col-md-2 col-form-label fw-bold">ID:</label>
-                                                <div className="col-md-10">
+                                                <label className="col-md-3 col-form-label fw-bold">ID:</label>
+                                                <div className="col-md-9">
                                                     <p className="card-text">{user.id}</p>
                                                 </div>
                                             </div>
                                             <hr />
 
                                             <div className="form-group row">
-                                                <label className="col-md-2 col-form-label fw-bold">First Name:</label>
-                                                <div className="col-md-10">
+                                                <label className="col-md-3 col-form-label fw-bold">First Name:</label>
+                                                <div className="col-md-9">
                                                     <p className="card-text">{user.firstName}</p>
                                                 </div>
                                             </div>
                                             <hr />
 
                                             <div className="form-group row">
-                                                <label className="col-md-2 col-form-label fw-bold">Last Name:</label>
-                                                <div className="col-md-10">
+                                                <label className="col-md-3 col-form-label fw-bold">Last Name:</label>
+                                                <div className="col-md-9">
                                                     <p className="card-text">{user.lastName}</p>
                                                 </div>
                                             </div>
                                             <hr />
 
                                             <div className="form-group row">
-                                                <label className="col-md-2 col-form-label fw-bold">Email:</label>
-                                                <div className="col-md-10">
+                                                <label className="col-md-3 col-form-label fw-bold">Email:</label>
+                                                <div className="col-md-9">
                                                     <p className="card-text">{user.email}</p>
                                                 </div>
                                             </div>
                                             <hr />
 
                                             <div className="form-group row">
-                                                <label className="col-md-2 col-form-label fw-bold">Roles:</label>
-                                                <div className="col-md-10">
+                                                <label className="col-md-3 col-form-label fw-bold">Roles:</label>
+                                                <div className="col-md-9">
                                                     <ul className="list-unstyled">
                                                         {user.roles.map((role) => (
-                                                            <li key={role.id} className="card-text">
-                                                                {role.name}
-                                                            </li>
+                                                            <li key={role.id} className="card-text">{role.name}</li>
                                                         ))}
                                                     </ul>
                                                 </div>
@@ -150,10 +148,10 @@ const Profile = () => {
                                 </div>
                             </div>
 
-                            <h4 className="card-title text-center">Booking History</h4>
+                            <h4 className="card-title text-center text-primary">Booking History</h4>
 
                             {bookings.length > 0 ? (
-                                <table className="table table-bordered table-hover shadow">
+                                <table className="table table-bordered table-hover shadow-sm rounded">
                                     <thead>
                                         <tr>
                                             <th scope="col">Booking ID</th>
@@ -171,14 +169,8 @@ const Profile = () => {
                                                 <td>{booking.id}</td>
                                                 <td>{booking.room.id}</td>
                                                 <td>{booking.room.roomType}</td>
-                                                <td>
-                                                    {moment(booking.checkInDate).subtract(1, "month").format("MMM Do, YYYY")}
-                                                </td>
-                                                <td>
-                                                    {moment(booking.checkOutDate)
-                                                        .subtract(1, "month")
-                                                        .format("MMM Do, YYYY")}
-                                                </td>
+                                                <td>{moment(booking.checkInDate).format("MMM Do, YYYY")}</td>
+                                                <td>{moment(booking.checkOutDate).format("MMM Do, YYYY")}</td>
                                                 <td>{booking.bookingConfirmationCode}</td>
                                                 <td className="text-success">On-going</td>
                                             </tr>
@@ -191,8 +183,8 @@ const Profile = () => {
 
                             <div className="d-flex justify-content-center">
                                 <div className="mx-2">
-                                    <button className="btn btn-danger btn-sm" onClick={handleDeleteAccount}>
-                                        Close account
+                                    <button className="btn btn-danger btn-lg" onClick={handleDeleteAccount}>
+                                        Close Account
                                     </button>
                                 </div>
                             </div>

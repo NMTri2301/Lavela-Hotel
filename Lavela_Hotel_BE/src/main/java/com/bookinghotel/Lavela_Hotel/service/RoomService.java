@@ -5,12 +5,10 @@ import com.bookinghotel.Lavela_Hotel.exception.ResourceNotFoundException;
 import com.bookinghotel.Lavela_Hotel.model.Room;
 import com.bookinghotel.Lavela_Hotel.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Blob;
@@ -18,9 +16,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class RoomService implements IRoomService {
     private final RoomRepository roomRepository;
     @Override
@@ -35,14 +32,13 @@ public class RoomService implements IRoomService {
         }
         return roomRepository.save(room);
     }
-
     @Override
-    public List<String> getAllRomTypes() {
+    public List<String> getAllRoomTypes() {
         return roomRepository.findDistinctRoomTypes();
     }
 
     @Override
-    public List<Room> getAllRoms() {
+    public List<Room> getAllRooms() {
         return roomRepository.findAll();
     }
 
@@ -80,7 +76,7 @@ public class RoomService implements IRoomService {
                 throw new InternalServerException("Error updating room");
             }
         }
-            return roomRepository.save(room);
+        return roomRepository.save(room);
     }
 
     @Override

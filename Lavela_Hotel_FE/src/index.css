@@ -1,6 +1,5 @@
 body {
   min-height: 100vh;
-  padding-bottom: 50px;
 }
 .card {
   opacity: 0.9;
@@ -94,7 +93,7 @@ body {
   position: relative;
   height: 150px;
   background-size: cover;
-  background-image: url("./assets/images/images.png");
+  background-image: url("./assets/images/ho.jpg");
   background-position: center center;
 }
 .header-title {

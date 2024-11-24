@@ -9,7 +9,7 @@ const Login = () => {
 	const [errorMessage, setErrorMessage] = useState("")
 	const [login, setLogin] = useState({
 		email: "",
-		password: ""
+		password: "",
 	})
 
 	const navigate = useNavigate()
@@ -29,7 +29,7 @@ const Login = () => {
 			auth.handleLogin(token)
 			navigate(redirectUrl, { replace: true })
 		} else {
-			setErrorMessage("Invalid username or password. Please try again.")
+			setErrorMessage("Invalid username or password. Please try again")
 		}
 		setTimeout(() => {
 			setErrorMessage("")
@@ -37,52 +37,63 @@ const Login = () => {
 	}
 
 	return (
-		<section className="container col-6 mt-5 mb-5">
-			{errorMessage && <p className="alert alert-danger">{errorMessage}</p>}
-			<h2>Login</h2>
-			<form onSubmit={handleSubmit}>
-				<div className="row mb-3">
-					<label htmlFor="email" className="col-sm-2 col-form-label">
-						Email
-					</label>
-					<div>
-						<input
-							id="email"
-							name="email"
-							type="email"
-							className="form-control"
-							value={login.email}
-							onChange={handleInputChange}
-						/>
-					</div>
-				</div>
+		<div className="d-flex flex-column min-vh-100">
+			<section className="container mt-5 mb-5 d-flex justify-content-center">
+				<div className="card shadow-lg p-4 col-12 col-md-8 col-lg-6">
+					{errorMessage && (
+						<div className="alert alert-danger text-center">{errorMessage}</div>
+					)}
+					<h2 className="text-center mb-4">Welcome to Lavela Hotel</h2>
+					<form onSubmit={handleSubmit}>
+						<div className="mb-4">
+							<label htmlFor="email" className="form-label">
+								Email Address
+							</label>
+							<input
+								id="email"
+								name="email"
+								type="email"
+								className="form-control"
+								placeholder="Enter your email"
+								value={login.email}
+								onChange={handleInputChange}
+								required
+							/>
+						</div>
 
-				<div className="row mb-3">
-					<label htmlFor="password" className="col-sm-2 col-form-label">
-						Password
-					</label>
-					<div>
-						<input
-							id="password"
-							name="password"
-							type="password"
-							className="form-control"
-							value={login.password}
-							onChange={handleInputChange}
-						/>
-					</div>
-				</div>
+						<div className="mb-4">
+							<label htmlFor="password" className="form-label">
+								Password
+							</label>
+							<input
+								id="password"
+								name="password"
+								type="password"
+								className="form-control"
+								placeholder="Enter your password"
+								value={login.password}
+								onChange={handleInputChange}
+								required
+							/>
+						</div>
 
-				<div className="mb-3">
-					<button type="submit" className="btn btn-primary" style={{ marginRight: "10px" }}>
-						Login
-					</button>
-					<span style={{ marginLeft: "10px" }}>
-						Don't' have an account yet?<Link to={"/register"}> Register</Link>
-					</span>
+						<div className="d-flex justify-content-between align-items-center mb-4">
+							<button type="submit" className="btn btn-primary w-100">
+								Login
+							</button>
+						</div>
+						<div className="text-center mt-3">
+							<p>
+								Don't have an account?{" "}
+								<Link to="/register" className="text-decoration-none">
+									Register
+								</Link>
+							</p>
+						</div>
+					</form>
 				</div>
-			</form>
-		</section>
+			</section>
+		</div>
 	)
 }
 

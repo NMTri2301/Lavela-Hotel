@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null)
 
 	const handleLogin = (token) => {
-		const decodedUser = jwtDecode(token) // Đổi lại thành jwt_decode(token)
+		const decodedUser = jwtDecode(token)
 		localStorage.setItem("userId", decodedUser.sub)
 		localStorage.setItem("userRole", decodedUser.roles)
 		localStorage.setItem("token", token)

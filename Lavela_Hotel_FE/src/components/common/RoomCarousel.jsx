@@ -20,7 +20,7 @@ const RoomCarousel = () => {
         })
     }, [])
     if (isLoading) {
-        return <div className="mt-5">Loading rooms .....</div>
+        return <div className="mt-5">Loading rooms.....</div>
     }
     if (errorMessage) {
         return <div className="text-danger mb-5 mt-5">Error : {errorMessage}</div>

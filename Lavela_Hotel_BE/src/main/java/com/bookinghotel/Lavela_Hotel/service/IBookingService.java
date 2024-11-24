@@ -7,9 +7,13 @@ import java.util.List;
 public interface IBookingService {
     void cancelBooking(Long bookingId);
 
-    String saveBoking(Long roomId, BookedRoom bookingRequest);
+    List<BookedRoom> getAllBookingsByRoomId(Long roomId);
+
+    String saveBooking(Long roomId, BookedRoom bookingRequest);
 
     BookedRoom findByBookingConfirmationCode(String confirmationCode);
 
-    List<BookedRoom> getAlllBookings();
+    List<BookedRoom> getAllBookings();
+
+    List<BookedRoom> getBookingsByUserEmail(String email);
 }

@@ -36,7 +36,6 @@ const Room = () => {
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
-
     const totalPages = Math.ceil(filteredData.length / roomsPerPage)
 
     const renderRooms = () => {
@@ -52,13 +51,13 @@ const Room = () => {
                 <Col md={6} className="mb-3 mb-md-0">
                     <RoomFilter data={data} setFilteredData={setFilteredData} />
                 </Col>
-                {/* <Col md={6} className="d-flex align-items-center justify-content-end">
-                <RoomPaginator 
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-                />
-            </Col> */}
+                <Col md={6} className="d-flex align-items-center justify-content-end">
+                    <RoomPaginator
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onChange={handlePageChange}
+                    />
+                </Col>
             </Row>
             <Row>{renderRooms()}</Row>
             <Row>
